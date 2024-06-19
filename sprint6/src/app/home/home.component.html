@@ -1,0 +1,70 @@
+<div class="container formulario">
+  <div class="row servicio">
+    <div class="col">
+      <h3>Seo</h3>
+      <p>Programación de una web responsive completa</p>
+    </div>
+    <div class="col">
+      <h4>300$</h4>
+    </div>
+    <div class="col">
+      <form [formGroup]="serviciosForm" (submit)="handleSubmit()">
+        <fieldset>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" formControlName="seo" (change)="handleSubmit()">
+            <label class="form-check-label" for="flexCheckDefault">
+              Añadir
+            </label>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <div class="row servicio">
+    <div class="col">
+      <h3>Ads</h3>
+      <p>Programación de una web responsive completa</p>
+    </div>
+    <div class="col">
+      <h4>400$</h4>
+    </div>
+    <div class="col">
+      <form [formGroup]="serviciosForm" (submit)="handleSubmit()">
+        <fieldset>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" formControlName="ads" (change)="handleSubmit()">
+            <label class="form-check-label" for="flexCheckDefault">
+              Añadir
+            </label>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <div class="row servicio">
+    <div class="col">
+      <h3>Web</h3>
+      <p>Programación de una web responsive completa</p>
+    </div>
+    <div class="col">
+      <h4>500$</h4>
+    </div>
+    <div class="col">
+      <form [formGroup]="serviciosForm" (submit)="handleSubmit()">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" formControlName="web" (change)="handleSubmit()">
+          <label class="form-check-label" for="flexCheckDefault">
+            Añadir
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row precio">
+        <h4>Precio Presupuestado: {{budgetPrice}}$</h4>
+    </div>
+  </div>
+</div>
+
+<app-panel></app-panel>

@@ -1,0 +1,49 @@
+.container{
+  position: relative;
+  max-width: 90%;
+  margin-top: 30px;
+  padding: 15px;
+}
+
+.imagen{
+  position: relative;
+}
+
+.portada{
+  width: 100%;
+  display: block;
+}
+
+.text-overlay{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #f8f4f4;
+  font-size: 24px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .text-overlay {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .text-overlay {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .text-overlay {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .text-overlay {
+    font-size: 24px;
+  }
+}
