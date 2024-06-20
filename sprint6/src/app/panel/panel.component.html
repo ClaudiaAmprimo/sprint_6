@@ -1,2 +1,31 @@
+<div class="container">
+  <div class="row panelForm">
+    <div class="col">
+      <div class="input-group">
+        <label for="numberPages">Número de páginas</label>
+          <div class="input-container">
+            <button class="btn-icon" (click)="addOnePage()">
+              <img src="assets/circle-plus-solid.svg" alt="Icono de incrementar" class="icons" >
+            </button>
+            <input type="number" name="numberPages" id="numberPages" [(ngModel)]="budgetService.budget.pages" min="0" (ngModelChange)="updatePrice()">
+            <button class="btn-icon" (click)="removeOnePage()">
+              <img src="assets/circle-minus-solid.svg" alt="Icono de decrementar" class="icons" >
+            </button>
+        </div>
+        <div class="input-group">
+          <label for="numberLanguages">Número de lenguajes</label>
+            <div class="input-container">
+              <button class="btn-icon" (click)="addOneLanguage()">
+                <img src="assets/circle-plus-solid.svg" alt="Icono de incrementar" class="icons" >
+              </button>
+              <input type="number" name="numberLanguages" id="numberLanguages" [(ngModel)]="budgetService.budget.languages" min="0" (ngModelChange)="updatePrice()">
+              <button class="btn-icon" (click)="removeOneLanguage()">
+                <img src="assets/circle-minus-solid.svg" alt="Icono de decrementar" class="icons" >
+              </button>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
 
 <app-modal></app-modal>

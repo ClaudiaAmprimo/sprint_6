@@ -1,0 +1,41 @@
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.panelForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  height: 100%;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.input-container input {
+  width: 60px;
+  text-align: center;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.icons {
+  width: 20px;
+  height: 20px;
+  margin: 0 10px;
+}

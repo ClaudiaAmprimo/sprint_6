@@ -41,7 +41,7 @@
       </form>
     </div>
   </div>
-  <div class="row servicio">
+  <div class="row servicio"  [ngClass]="{'expand': web.value}">
     <div class="col">
       <h3>Web</h3>
       <p>Programación de una web responsive completa</p>
@@ -52,12 +52,17 @@
     <div class="col">
       <form [formGroup]="serviciosForm" (submit)="handleSubmit()">
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" formControlName="web" (change)="handleSubmit()">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" formControlName="web" (change)="handleSubmit()" >
           <label class="form-check-label" for="flexCheckDefault">
             Añadir
           </label>
         </div>
       </form>
+    </div>
+    <div class="row panel-row">
+      @if(web.value){
+          <app-panel (priceUpdated)="updateTotalPrice($event)"></app-panel>
+        }
     </div>
   </div>
   <div class="container">
@@ -66,5 +71,3 @@
     </div>
   </div>
 </div>
-
-<app-panel></app-panel>
