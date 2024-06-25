@@ -2,11 +2,12 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { ModalComponent } from '../shared/modal/modal.component';
 import { BudgetService } from '../services/budget.service';
 import { FormsModule } from '@angular/forms';
+import { Modal2Component } from '../shared/modal2/modal2.component';
 
 @Component({
   selector: 'app-panel',
   standalone: true,
-  imports: [ModalComponent, FormsModule],
+  imports: [ModalComponent, FormsModule, Modal2Component],
   templateUrl: './panel.component.html',
   styleUrl: './panel.component.scss'
 })

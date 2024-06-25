@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row panelForm">
-    <div class="col">
+    <div class="col-8">
       <div class="input-group">
+        <app-modal2></app-modal2>
         <label for="numberPages">Número de páginas</label>
           <div class="input-container">
             <button class="btn-icon" (click)="addOnePage()">
@@ -13,6 +14,7 @@
             </button>
         </div>
         <div class="input-group">
+          <app-modal></app-modal>
           <label for="numberLanguages">Número de lenguajes</label>
             <div class="input-container">
               <button class="btn-icon" (click)="addOneLanguage()">
@@ -27,5 +29,3 @@
     </div>
   </div>
 </div>
-
-<app-modal></app-modal>

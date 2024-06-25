@@ -6,11 +6,10 @@ import Budget from '../models/Budget';
 })
 export class BudgetService {
   budget: Budget;
-  // price: number;
 
   constructor() {
     this.budget = {
-      pages: 1,
+      pages: 0,
       languages: 0
     }
   }
