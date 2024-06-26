@@ -14,3 +14,11 @@ describe('BudgetService', () => {
     expect(service).toBeTruthy();
   });
 });
+
+describe('CalculatePrice', () => {
+  it('should calculate the price of each language per page', () => {
+    const calculate = new BudgetService();
+    const result = calculate.calculatePrice(1,1);
+    expect(result).toBe(30);
+  });
+});
