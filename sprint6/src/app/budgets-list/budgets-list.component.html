@@ -1,1 +1,75 @@
+<div class="container formulario">
+  <div class="row servicio">
+    <h4 class="col-12">Pedir Presupuesto</h4>
+    <form [formGroup]="budgetForm" (submit)="handleBudget()" class="w-100">
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-3">
+          <fieldset>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="floatingInput" placeholder="nombre" formControlName="nombre">
+              <label for="floatingInput">nombre</label>
+              @if(nombre.invalid && nombre.touched){
+                <p class="form-error">Introduce tu nombre</p>
+              }
+            </div>
+          </fieldset>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+          <fieldset>
+            <div class="form-floating mb-3">
+              <input type="number" class="form-control" id="floatingInput2" placeholder="telefono" formControlName="telefono">
+              <label for="floatingInput2">telefono</label>
+              @if(telefono.hasError("required") && telefono.touched){
+                <p class="form-error">Introduce tu número de telefono</p>
+              } @else if(telefono.hasError("pattern") && telefono.touched) {
+                <p class="form-error">Introduce un número válido</p>
+              }
+            </div>
+          </fieldset>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+          <fieldset>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingInput3" placeholder="name@example.com" formControlName="email">
+              <label for="floatingInput3">email</label>
+              @if(email.hasError("required") && email.touched){
+                <p class="form-error">Introduce tu email</p>
+              } @else if(email.hasError("email") && email.touched) {
+                <p class="form-error">Introduce un email válido</p>
+              }
+            </div>
+          </fieldset>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 align-content-center justify-content-center">
+          <div class="form-floating mb-3">
+            <button [disabled]="budgetForm.invalid" type="submit" class="btn btn-success btn-solicitar w-100">Solicitar Presupuesto</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 
+@if(listaBudget.length > 0){
+<div class="container formulario">
+  <div class="row">
+    <h4 class="col-12 ms-4 p-4">Presupuesto en curso: </h4>
+  </div>
+  <div class="row servicio">
+    <div class="col">
+      <h4 class="col-12">{{this.listaBudget[0].nombre}}</h4>
+      <p>{{this.listaBudget[0].email}}</p>
+      <p>{{this.listaBudget[0].telefono}}</p>
+    </div>
+    <div class="col">
+      <h4>Servicios contratados</h4>
+      <p>prueba</p>
+      <p>prueba</p>
+    </div>
+    <div class="col">
+      <h6>Total</h6>
+     <h4>prueba</h4>
+    </div>
+  </div>
+</div>
+}

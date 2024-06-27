@@ -3,11 +3,12 @@ import { PanelComponent } from '../panel/panel.component';
 import {ReactiveFormsModule, FormGroup, FormControl} from '@angular/forms'
 import { CommonModule } from '@angular/common';
 import { BudgetService } from '../services/budget.service';
+import { BudgetsListComponent } from '../budgets-list/budgets-list.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [PanelComponent, ReactiveFormsModule, CommonModule],
+  imports: [PanelComponent, ReactiveFormsModule, CommonModule, BudgetsListComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -76,3 +77,4 @@ export class HomeComponent {
     }
   }
 }
+
