@@ -42,12 +42,15 @@ export class HomeComponent {
     let web = formSubmited.web
 
     this.budgetPrice = 0;
+    let services = [];
 
     if(seo === true){
       this.budgetPrice += 300;
+      services.push({ name: 'Seo', price: 300 });
     }
     if(ads === true){
       this.budgetPrice += 400;
+      services.push({ name: 'Ads', price: 400 });
     }
     if(web === true){
       const webPrice = this.budgetService.calculatePrice(
@@ -55,7 +58,14 @@ export class HomeComponent {
         this.budgetService.budget.languages
       );
       this.budgetPrice += 500 + webPrice;
+      services.push({
+        name: 'Web',
+        price: 500 + webPrice,
+        pages: this.budgetService.budget.pages,
+        languages: this.budgetService.budget.languages
+      });
     }
+    this.budgetService.setServices(services);
   }
 
   updateTotalPrice(price: number) {
@@ -65,16 +75,25 @@ export class HomeComponent {
     let web = formSubmited.web;
 
     this.budgetPrice = 0;
+    let services = [];
 
     if (seo === true) {
       this.budgetPrice += 300;
+      services.push({ name: 'Seo', price: 300 });
     }
     if (ads === true) {
       this.budgetPrice += 400;
+      services.push({ name: 'Ads', price: 400 });
     }
     if (web === true) {
       this.budgetPrice += 500 + price;
+      services.push({
+        name: 'Web',
+        price: 500 + price,
+        pages: this.budgetService.budget.pages,
+        languages: this.budgetService.budget.languages
+      });
     }
+    this.budgetService.setServices(services);
   }
 }
-
