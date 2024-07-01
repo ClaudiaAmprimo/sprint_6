@@ -95,5 +95,6 @@ export class HomeComponent {
       });
     }
     this.budgetService.setServices(services);
+    console.log(services)
   }
 }
