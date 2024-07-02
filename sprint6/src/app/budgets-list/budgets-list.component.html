@@ -59,50 +59,55 @@
       <div class="p-2 sort-header" (click)="sortBudgetBy('nombre')" [ngClass]="{'active': activeSort === 'nombre'}">
         Nombre
         @if(activeSort === 'nombre') {
-          <img [src]="sortState['nombre'] ? 'assets/caret-up-solid.svg' : 'assets/caret-down-solid.svg'" class="sort-icon" />
+          <img [src]="sortImage['nombre'] ? 'assets/caret-up-solid.svg' : 'assets/caret-down-solid.svg'" class="sort-icon" />
         }
       </div>
       <div class="p-2 sort-header" (click)="sortBudgetBy('total')" [ngClass]="{'active': activeSort === 'total'}">
         Importe
         @if(activeSort === 'total') {
-          <img [src]="sortState['total'] ? 'assets/caret-up-solid.svg' : 'assets/caret-down-solid.svg'" class="sort-icon" />
+          <img [src]="sortImage['total'] ? 'assets/caret-up-solid.svg' : 'assets/caret-down-solid.svg'" class="sort-icon" />
         }
       </div>
       <div class="p-2 sort-header" (click)="sortBudgetBy('date')" [ngClass]="{'active': activeSort === 'date'}">
         Fecha
         @if(activeSort === 'date') {
-          <img [src]="sortState['date'] ? 'assets/caret-up-solid.svg' : 'assets/caret-down-solid.svg'" class="sort-icon" />
+          <img [src]="sortImage['date'] ? 'assets/caret-up-solid.svg' : 'assets/caret-down-solid.svg'" class="sort-icon" />
         }
       </div>
-      <button class="btn-icon">
-        <img src="assets/lupa.svg" alt="Icono de buscar" class="icons" >
-      </button>
-    </div>
-    @for (budget of listaBudget; track budget) {
-      <div class="row servicio">
-        <div class="col">
-          <h4 class="col-12">{{ budget.nombre }}</h4>
-          <p>{{ budget.email }}</p>
-          <p>{{ budget.telefono }}</p>
-        </div>
-        <div class="col">
-          <h4>Servicios contratados</h4>
-          <ul>
-            @for (service of budget.services; track service) {
-              <li>
-                {{ service.name }} - {{ service.price }}$
-                @if (service.name === 'Web') {
-                  ({{ service.pages }} páginas, {{ service.languages }} lenguajes)
-                }
-              </li>
-            }
-          </ul>
-        </div>
-        <div class="col">
-          <h6>Total</h6>
-          <h4>{{ budget.total }}$</h4>
-        </div>
+      <div class="search-container">
+        <input type="text" placeholder="Busca por nombre" class="search-bar" #searchInput>
+        <button class="btn-icon">
+          <img src="assets/lupa.svg" alt="Icono de buscar" class="search-icon" (click)="filterResults(searchInput.value)">
+        </button>
       </div>
-    }
+    </div>
+
+      @for (budget of listaBudget; track budget) {
+        <div class="row servicio">
+          <div class="col">
+            <h4 class="col-12">{{ budget.nombre }}</h4>
+            <p>{{ budget.email }}</p>
+            <p>{{ budget.telefono }}</p>
+          </div>
+          <div class="col">
+            <h4>Servicios contratados</h4>
+            <ul>
+              @for (service of budget.services; track service) {
+                <li>
+                  {{ service.name }} - {{ service.price }}$
+                  @if (service.name === 'Web') {
+                    ({{ service.pages }} {{ service.pages === 1 ? "página" : "páginas" }},
+                    {{ service.languages }} {{ service.languages === 1 ? "lenguaje" : "lenguajes" }})
+                  }
+                </li>
+              }
+            </ul>
+          </div>
+          <div class="col">
+            <h6>Total</h6>
+            <h4>{{ budget.total }}$</h4>
+          </div>
+        </div>
+      }
   </div>
 }

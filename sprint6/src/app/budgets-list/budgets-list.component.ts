@@ -16,7 +16,7 @@ export class BudgetsListComponent {
   telefono: FormControl;
   email: FormControl;
   listaBudget: any[] = [];
-  sortState: { [key: string]: boolean } = {
+  sortImage: { [key: string]: boolean } = {
     nombre: true,
     total: true,
     date: true
@@ -42,7 +42,7 @@ export class BudgetsListComponent {
       email: this.budgetForm.value.email,
       services: this.budgetService.getServices(),
       total: this.budgetService.getTotalPrice(),
-      date: new Date() 
+      date: new Date()
     };
 
     this.listaBudget.push(budgetData);
@@ -53,13 +53,20 @@ export class BudgetsListComponent {
 
   sortBudgetBy(key: string): void {
     this.activeSort = key;
-    this.sortState[key] = !this.sortState[key];
+    this.sortImage[key] = !this.sortImage[key];
     if (key === 'total') {
-      this.listaBudget.sort((a, b) => this.sortState[key] ? a.total - b.total : b.total - a.total);
+      this.listaBudget.sort((a, b) => this.sortImage[key] ? a.total - b.total : b.total - a.total);
     } else if (key === 'date') {
-      this.listaBudget.sort((a, b) => this.sortState[key] ? new Date(a.date).getTime() - new Date(b.date).getTime() : new Date(b.date).getTime() - new Date(a.date).getTime());
+      this.listaBudget.sort((a, b) => this.sortImage[key] ? new Date(a.date).getTime() - new Date(b.date).getTime() : new Date(b.date).getTime() - new Date(a.date).getTime());
     } else if (key === 'nombre') {
-      this.listaBudget.sort((a, b) => this.sortState[key] ? a.nombre.localeCompare(b.nombre) : b.nombre.localeCompare(a.nombre));
+      this.listaBudget.sort((a, b) => this.sortImage[key] ? a.nombre.localeCompare(b.nombre) : b.nombre.localeCompare(a.nombre));
     }
+  }
+
+  filteredResults: any[] = [];
+
+  filterResults(name:string){
+    this.filteredResults = this.listaBudget.filter(item => item.nombre.toLowerCase() === name.toLowerCase());
+    console.log(this.filteredResults);
   }
 }
