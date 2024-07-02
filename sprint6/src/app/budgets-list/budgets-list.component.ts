@@ -16,6 +16,7 @@ export class BudgetsListComponent {
   telefono: FormControl;
   email: FormControl;
   listaBudget: any[] = [];
+  filteredResults: any[] = [];
   sortImage: { [key: string]: boolean } = {
     nombre: true,
     total: true,
@@ -32,7 +33,9 @@ export class BudgetsListComponent {
       nombre: this.nombre,
       telefono: this.telefono,
       email: this.email
-    })
+    });
+
+    this.filteredResults = this.listaBudget;
   }
 
   handleBudget(): void{
@@ -46,6 +49,7 @@ export class BudgetsListComponent {
     };
 
     this.listaBudget.push(budgetData);
+    this.filteredResults = this.listaBudget;
     this.budgetForm.reset();
     console.log(budgetData)
     console.log(this.listaBudget)
@@ -61,12 +65,17 @@ export class BudgetsListComponent {
     } else if (key === 'nombre') {
       this.listaBudget.sort((a, b) => this.sortImage[key] ? a.nombre.localeCompare(b.nombre) : b.nombre.localeCompare(a.nombre));
     }
+    this.filteredResults = [...this.listaBudget];
   }
 
-  filteredResults: any[] = [];
 
-  filterResults(name:string){
-    this.filteredResults = this.listaBudget.filter(item => item.nombre.toLowerCase() === name.toLowerCase());
+  filterResults(name: string): void {
+    if (name.trim() === '') {
+      this.filteredResults = this.listaBudget;
+    } else {
+      this.filteredResults = this.listaBudget.filter(item => item.nombre.toLowerCase().includes(name.toLowerCase()));
+    }
     console.log(this.filteredResults);
+    console.log(this.listaBudget)
   }
 }

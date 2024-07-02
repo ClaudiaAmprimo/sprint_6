@@ -82,8 +82,8 @@
       </div>
     </div>
 
-      @for (budget of listaBudget; track budget) {
-        <div class="row servicio">
+      @for (budget of filteredResults; track budget) {
+        <div  class="row servicio">
           <div class="col">
             <h4 class="col-12">{{ budget.nombre }}</h4>
             <p>{{ budget.email }}</p>
@@ -92,15 +92,13 @@
           <div class="col">
             <h4>Servicios contratados</h4>
             <ul>
-              @for (service of budget.services; track service) {
-                <li>
-                  {{ service.name }} - {{ service.price }}$
-                  @if (service.name === 'Web') {
-                    ({{ service.pages }} {{ service.pages === 1 ? "página" : "páginas" }},
-                    {{ service.languages }} {{ service.languages === 1 ? "lenguaje" : "lenguajes" }})
-                  }
-                </li>
-              }
+              <li *ngFor="let service of budget.services">
+                {{ service.name }} - {{ service.price }}$
+                <span *ngIf="service.name === 'Web'">
+                  ({{ service.pages }} {{ service.pages === 1 ? "página" : "páginas" }},
+                  {{ service.languages }} {{ service.languages === 1 ? "lenguaje" : "lenguajes" }})
+                </span>
+              </li>
             </ul>
           </div>
           <div class="col">
@@ -109,5 +107,6 @@
           </div>
         </div>
       }
+
   </div>
 }
