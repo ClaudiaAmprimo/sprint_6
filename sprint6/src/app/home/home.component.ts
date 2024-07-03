@@ -67,27 +67,33 @@ export class HomeComponent implements OnInit {
       }
 
       this.initializing = false;
+      this.calculateBudget();
     });
   }
 
-  handleSubmit():void{
-    let formSubmited = this.serviciosForm.value
-    let seo = formSubmited.seo
-    let ads = formSubmited.ads
-    let web = formSubmited.web
+  handleSubmit(): void {
+    this.calculateBudget();
+    this.updateUrl(this.seo.value, this.ads.value, this.web.value, this.budgetService.budget.pages, this.budgetService.budget.languages);
+  }
+
+  calculateBudget(): void {
+    let formSubmited = this.serviciosForm.value;
+    let seo = formSubmited.seo;
+    let ads = formSubmited.ads;
+    let web = formSubmited.web;
 
     this.budgetPrice = 0;
     let services = [];
 
-    if(seo === true){
+    if (seo === true) {
       this.budgetPrice += 300;
       services.push({ name: 'Seo', price: 300 });
     }
-    if(ads === true){
+    if (ads === true) {
       this.budgetPrice += 400;
       services.push({ name: 'Ads', price: 400 });
     }
-    if(web === true){
+    if (web === true) {
       const webPrice = this.budgetService.calculatePrice(
         this.budgetService.budget.pages,
         this.budgetService.budget.languages
@@ -101,9 +107,8 @@ export class HomeComponent implements OnInit {
       });
     }
     this.budgetService.setServices(services);
-
-    this.updateUrl(seo, ads, web, this.budgetService.budget.pages, this.budgetService.budget.languages);
   }
+
 
   updateUrl(seo: boolean, ads: boolean, web: boolean, pages: number, lang: number) {
     const queryParams: any = {};
@@ -137,36 +142,9 @@ export class HomeComponent implements OnInit {
     console.log(queryParams)
   }
 
-  updateTotalPrice(price: number) {
-    let formSubmited = this.serviciosForm.value;
-    let seo = formSubmited.seo;
-    let ads = formSubmited.ads;
-    let web = formSubmited.web;
-
-    this.budgetPrice = 0;
-    let services = [];
-
-    if (seo === true) {
-      this.budgetPrice += 300;
-      services.push({ name: 'Seo', price: 300 });
-    }
-    if (ads === true) {
-      this.budgetPrice += 400;
-      services.push({ name: 'Ads', price: 400 });
-    }
-    if (web === true) {
-      this.budgetPrice += 500 + price;
-      services.push({
-        name: 'Web',
-        price: 500 + price,
-        pages: this.budgetService.budget.pages,
-        languages: this.budgetService.budget.languages
-      });
-    }
-    this.budgetService.setServices(services);
-    console.log(services)
-
-    this.updateUrl(seo, ads, web, this.budgetService.budget.pages, this.budgetService.budget.languages);
+  updateTotalPrice(price: number): void {
+    this.calculateBudget();
+    this.updateUrl(this.seo.value, this.ads.value, this.web.value, this.budgetService.budget.pages, this.budgetService.budget.languages);
   }
 
   resetServiciosForm(): void {
@@ -176,7 +154,7 @@ export class HomeComponent implements OnInit {
       web: false
     });
     this.budgetService.resetBudget();
-    // this.budgetPrice = 0;
+    this.budgetPrice = 0;
     this.updateUrl(false, false, false, 1, 1);
   }
 }
