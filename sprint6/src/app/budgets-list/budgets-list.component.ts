@@ -15,6 +15,7 @@ export class BudgetsListComponent {
   nombre: FormControl;
   telefono: FormControl;
   email: FormControl;
+  
   listaBudget: any[] = [];
   filteredResults: any[] = [];
   sortImage: { [key: string]: boolean } = {

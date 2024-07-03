@@ -20,7 +20,7 @@ export class PanelComponent {
     this.updatePrice();
   }
   removeOnePage(){
-    if(this.budgetService.budget.pages > 0){
+    if(this.budgetService.budget.pages > 1){
       this.budgetService.budget.pages--;
       this.updatePrice();
     }
@@ -30,7 +30,7 @@ export class PanelComponent {
     this.updatePrice();
   }
   removeOneLanguage(){
-    if(this.budgetService.budget.languages > 0){
+    if(this.budgetService.budget.languages > 1){
       this.budgetService.budget.languages--;
       this.updatePrice();
     }

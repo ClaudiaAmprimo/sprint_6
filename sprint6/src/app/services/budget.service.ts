@@ -9,8 +9,8 @@ export class BudgetService {
 
   constructor() {
     this.budget = {
-      pages: 0,
-      languages: 0,
+      pages: 1,
+      languages: 1,
       services: [],
       totalPrice: 0
     }
