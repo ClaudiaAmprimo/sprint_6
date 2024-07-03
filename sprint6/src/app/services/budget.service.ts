@@ -32,4 +32,11 @@ export class BudgetService {
   getTotalPrice() {
     return this.budget.totalPrice;
   }
+
+  resetBudget(): void {
+    this.budget.pages = 1;
+    this.budget.languages = 1;
+    this.budget.services = [];
+    this.budget.totalPrice = 0;
+  }
 }

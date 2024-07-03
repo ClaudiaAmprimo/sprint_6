@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BudgetService } from '../services/budget.service';
 import { CommonModule } from '@angular/common';
@@ -15,7 +15,7 @@ export class BudgetsListComponent {
   nombre: FormControl;
   telefono: FormControl;
   email: FormControl;
-  
+
   listaBudget: any[] = [];
   filteredResults: any[] = [];
   sortImage: { [key: string]: boolean } = {
@@ -24,6 +24,7 @@ export class BudgetsListComponent {
     date: true
   };
   activeSort: string = '';
+  @Output() resetFormEvent = new EventEmitter<void>();
 
   constructor(public budgetService: BudgetService){
     this.nombre = new FormControl('', Validators.required);
@@ -52,6 +53,7 @@ export class BudgetsListComponent {
     this.listaBudget.push(budgetData);
     this.filteredResults = this.listaBudget;
     this.budgetForm.reset();
+    this.resetFormEvent.emit();
     console.log(budgetData)
     console.log(this.listaBudget)
   }
